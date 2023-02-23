@@ -3,26 +3,7 @@ import db from "../../util/firebase";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 
-export async function getServerSideProps() {
-  let records = [];
-
-  db.child("contacts").on("value", (snapshot) => {
-    if (snapshot.val() !== null) {
-      snapshot.forEach((childsnapshot) => {
-        let data = childsnapshot.val();
-        records.push(data);
-      });
-    }
-  });
-
-  return {
-    props: {
-      todos: records || null,
-    },
-  };
-}
-
-const Add = ({ todos }) => {
+const Add = () => {
   const initialState = {
     name: "",
     email: "",
